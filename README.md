@@ -32,7 +32,9 @@ Hệ thống tích hợp chấm công bằng **nhận diện khuôn mặt kết 
 
 ## 6. Mô hình tương tác người dùng
 ### Quản trị viên
-- Quản lý nhân sự, phòng ban, chấm công, lương  
+- Quản lý nhân sự,thêm, sửa, xóa, phòng ban, chấm công, lương  
+### Quản lý
+- Quản lý nhân sự, chấm công, quản lý phòng ban
 
 ### Nhân viên
 - Đăng nhập, chấm công, xem lịch sử làm việc, bảng lương  
