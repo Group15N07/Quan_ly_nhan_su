@@ -1,7 +1,7 @@
 # Đề xuất dự án: Ứng dụng quản lý nhân sự tích hợp chấm công bằng nhận diện khuôn mặt
 
 ## 1. Giới thiệu tổng quan
-Trong bối cảnh số hóa doanh nghiệp ngày càng phát triển, việc xây dựng một hệ thống quản lý nhân sự là điều cần thiết. Đề tài hướng đến việc thiết kế một ứng dụng hỗ trợ quản lý nhân sự hiệu quả, tích hợp nhận diện khuôn mặt bằng **YOLOv12** để chấm công tự động, tăng tính bảo mật và minh bạch.
+Trong bối cảnh số hóa doanh nghiệp ngày càng phát triển, việc xây dựng một hệ thống quản lý nhân sự là điều cần thiết. Đề tài hướng đến việc thiết kế một ứng dụng hỗ trợ quản lý nhân sự hiệu quả, tích hợp nhận diện khuôn mặt bằng **Scrfd** để phát hiện và **arcface** để chấm công tự động, tăng tính bảo mật và minh bạch.
 
 Hệ thống còn áp dụng **game hóa** để tạo động lực làm việc, đồng thời đáp ứng yêu cầu **mở rộng**, **bảo mật** và **trải nghiệm người dùng hiện đại**.
 
