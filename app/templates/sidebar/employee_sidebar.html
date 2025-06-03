@@ -1,0 +1,17 @@
+<div id="sidebar" class="bg-dark text-white">
+  <div class="sidebar-header px-3 py-4">
+    <h4 class="text-white">employee</h4>
+    <small>Chào mừng bạn trở lại</small>
+  </div>
+  <ul class="nav flex-column px-2">
+    <li class="nav-item"><a class="nav-link" href="#">Employee</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard.root') }}">📊 Bảng điều khiển</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ url_for('attendance.bang_cham_cong_ngay') }}">🕒 Chấm công</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">🎯 Game board</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">💰 Bảng lương</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">📈 Thống kê chấm công</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">📋 Tiến độ dự án</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">⚙️ Cài đặt</a></li>
+    <li class="nav-item"><a class="nav-link text-danger" href="{{ url_for('auth.logout') }}">🚪 Đăng xuất</a></li>
+  </ul>
+</div>
