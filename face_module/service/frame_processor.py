@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
-from models import SCRFD, ArcFace
-from utils.helpers import compute_similarity, draw_bbox_info
+from face_module.models import SCRFD, ArcFace
+from face_module.utils.helpers import compute_similarity, draw_bbox_info
 
 def frame_processor(
     frame: np.ndarray,
@@ -39,4 +39,4 @@ def frame_processor(
         draw_bbox_info(frame, best_bbox, similarity=best_similarity, name=best_match_name, color=color)
         return frame, best_match_name  # ✅ Nhận diện thành công
 
-    return None, None  # ❌ Không khớp ai
+    return None, None  

@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import onnxruntime
 
-from utils.helpers import distance2bbox, distance2kps
+from face_module.utils.helpers import distance2bbox, distance2kps
 from typing import Tuple
 
 __all__ = ["SCRFD"]

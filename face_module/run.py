@@ -8,8 +8,8 @@ if PROJECT_ROOT not in sys.path:
 
 import cv2
 import random
-from gtts import gTTS
-from playsound import playsound
+from PIL import Image
+import numpy as np
 
 from face_module.load_model import load_model
 from face_module.c.cConst import Const
@@ -69,6 +69,31 @@ def process_from_webcam_persistent(output_directory, allowed_username):
     cap.release()
     cv2.destroyAllWindows()
     return result_flag
+
+
+def recognize_face_from_image(image, allowed_username):
+    """
+    Nhận diện khuôn mặt từ ảnh (PIL.Image hoặc numpy array).
+    Trả về True nếu nhận diện đúng allowed_username, False nếu sai hoặc lỗi.
+    """
+    var = Const()
+    detector, recognizer = load_model()
+    targets = build_targets(detector, recognizer, var.faces_dir)
+    colors = {name: tuple(random.randint(0,255) for _ in range(3)) for _, name in targets}
+
+    # Chuyển ảnh sang numpy array nếu là PIL Image
+    if isinstance(image, Image.Image):
+        frame = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+    else:
+        frame = image
+
+    processed_img, detected_name = frame_processor(
+        frame, detector, recognizer, targets, colors, var, var.output_images_dir
+    )
+    if detected_name == allowed_username:
+        return True
+    else:
+        return False
 
 
 def main():

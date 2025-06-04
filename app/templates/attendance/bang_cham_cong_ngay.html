@@ -1,12 +1,9 @@
-{% extends layout%}
+{% extends layout %}
 {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chamcongngay.css') }}">
 <div class="container mt-5">
     <header class="d-flex justify-content-between align-items-center mb-4">
         <h2>Bảng chấm công trong ngày</h2>
-        <a href="{{ url_for('face_trigger.chamcong_face') }}" class="btn btn-primary mb-3">
-    📷 Chấm công bằng khuôn mặt
-</a>
-
     </header>
 
     {% with messages = get_flashed_messages() %}
@@ -39,16 +36,14 @@
                 <td>{{ record.date }}</td>
                 <td>{{ record.check_in or '-' }}</td>
                 <td>{{ record.check_out or '-' }}</td>
-                <td>{% if record.total_hours is not none and record.total_hours|float != 0 %}
-                    {{ '%.2f' % (record.total_hours|float) }}
+                <td>
+                    {% if record.total_hours is not none and record.total_hours|float != 0 %}
+                        {{ '%.2f' % (record.total_hours|float) }}
                     {% else %}
                         -
                     {% endif %}
                 </td>
-
-
-
-
+                <td><!-- Thêm nút/hành động nếu cần --></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -56,5 +51,32 @@
     {% else %}
         <p class="text-muted">Không có dữ liệu chấm công hôm nay.</p>
     {% endif %}
+
+    <div class="face-scan-container">
+        <div class="face-scan-inner">
+            <div class="face-camera">
+                <span id="face-placeholder">Hướng camera vào khuôn mặt<br>ở đây</span>
+                <video id="face-video" autoplay playsinline style="display:none;"></video>
+            </div>
+            <button class="btn btn-primary mb-3" id="start-btn">
+                <i class="fas fa-camera"></i> Bật camera
+            </button>
+        </div>
+    </div>
+
+    <!-- Popup kết quả -->
+    <div id="result-popup" class="result-popup" style="display:none;">
+        <div class="icon" id="result-icon"></div>
+        <div id="result-message"></div>
+    </div>
 </div>
+
+
+
+<div id="result-popup-center" class="result-popup-center">
+    <div class="icon" id="result-icon-center"></div>
+    <div class="message" id="result-message-center"></div>
+</div>
+
+<script src="{{ url_for('static', filename='js/chamcongngay.js') }}"></script>
 {% endblock %}

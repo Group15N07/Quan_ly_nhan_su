@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import onnxruntime
 
-from utils.helpers import norm_crop_image
+from face_module.utils.helpers import norm_crop_image
 
 __all__ = ["ArcFace"]
 

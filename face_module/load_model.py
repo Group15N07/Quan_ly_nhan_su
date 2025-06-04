@@ -1,8 +1,8 @@
 import torch
 import onnxruntime
-from c.cConst import Const
-from models.arcface import ArcFace
-from models.scrfd import SCRFD
+from face_module.c.cConst import Const
+from face_module.models.arcface import ArcFace
+from face_module.models.scrfd import SCRFD
 var = Const()
 
 def load_model():
