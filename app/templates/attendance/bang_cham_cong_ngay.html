@@ -4,6 +4,12 @@
 <div class="container mt-5">
     <header class="d-flex justify-content-between align-items-center mb-4">
         <h2>Bảng chấm công trong ngày</h2>
+<<<<<<< HEAD
+=======
+        <a href="{{ url_for('face_trigger.chamcong_face') }}" class="btn btn-primary mb-3">
+            📷 Chấm công bằng khuôn mặt
+        </a>
+>>>>>>> 3efe872 (WIP: Lưu thay đổi trước khi chuyển branch)
     </header>
 
     {% with messages = get_flashed_messages() %}
@@ -56,11 +62,17 @@
         <div class="face-scan-inner">
             <div class="face-camera">
                 <span id="face-placeholder">Hướng camera vào khuôn mặt<br>ở đây</span>
+<<<<<<< HEAD
                 <video id="face-video" autoplay playsinline style="display:none;"></video>
             </div>
             <button class="btn btn-primary mb-3" id="start-btn">
                 <i class="fas fa-camera"></i> Bật camera
             </button>
+=======
+                <video id="face-video" autoplay></video>
+            </div>
+            <button id="start-btn">Bắt đầu nhé</button>
+>>>>>>> 3efe872 (WIP: Lưu thay đổi trước khi chuyển branch)
         </div>
     </div>
 
@@ -71,6 +83,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 
 
 <div id="result-popup-center" class="result-popup-center">
@@ -79,4 +92,52 @@
 </div>
 
 <script src="{{ url_for('static', filename='js/chamcongngay.js') }}"></script>
+=======
+<script>
+document.getElementById('start-btn').onclick = async function() {
+    document.getElementById('face-placeholder').style.display = 'none';
+    let video = document.getElementById('face-video');
+    video.style.display = 'block';
+
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+            video.srcObject = stream;
+            video.play();
+
+            setTimeout(() => {
+                let success = Math.random() > 0.5;
+                showResult(success);
+                stream.getTracks().forEach(track => track.stop());
+                video.style.display = 'none';
+                document.getElementById('face-placeholder').style.display = 'block';
+            }, 2500);
+        });
+    }
+};
+
+function showResult(success) {
+    let popup = document.getElementById('result-popup');
+    let icon = document.getElementById('result-icon');
+    let msg = document.getElementById('result-message');
+    if(success) {
+        icon.innerHTML = "&#10004;";
+        icon.className = "icon success";
+        msg.innerHTML = "Chúc bạn một ngày làm việc hiệu quả!";
+        popup.style.display = 'flex';
+        setTimeout(() => {
+            popup.style.display = 'none';
+            location.reload(); // Làm mới bảng sau khi popup đóng
+        }, 1800);
+    } else {
+        icon.innerHTML = "&#10006;";
+        icon.className = "icon fail";
+        msg.innerHTML = "Vui lòng thử lại nhe!";
+        popup.style.display = 'flex';
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 1800);
+    }
+}
+</script>
+>>>>>>> 3efe872 (WIP: Lưu thay đổi trước khi chuyển branch)
 {% endblock %}
