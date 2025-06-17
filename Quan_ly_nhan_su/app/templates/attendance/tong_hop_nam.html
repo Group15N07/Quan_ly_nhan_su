@@ -1,0 +1,49 @@
+{% extends layout %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3"><i class="fas fa-calendar-alt icon"></i> Thống kê chấm công theo năm</h2>
+
+    <form method="get" class="mb-3">
+        <label for="year" class="form-label">Chọn năm:</label>
+        <select name="year" id="year" class="form-select w-auto d-inline-block" onchange="this.form.submit()">
+            {% for y in range(2020, 2031) %}
+                <option value="{{ y }}" {% if y == year %}selected{% endif %}>{{ y }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <a href="{{ url_for('attendance.tongket_cham_cong_thang', year=year) }}" class="btn btn-secondary mb-3">
+        <i class="fas fa-arrow-left"></i> Tháng
+    </a>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle text-center">
+            <thead class="table-primary">
+                <tr>
+                    <th>Họ tên</th>
+                    {% for m in range(1, 13) %}
+                        <th>Th {{ m }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in summary %}
+                <tr>
+                    <td class="text-start">{{ u.name }}</td>
+                    {% for m in u.months %}
+                        <td>
+                            {% if m.count > 0 %}
+                                <a href="{{ url_for('attendance.chi_tiet_cham_cong_thang', employee_code=u.employee_code, month=m.month) }}">
+                                    {{ m.count }}
+                                </a>
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

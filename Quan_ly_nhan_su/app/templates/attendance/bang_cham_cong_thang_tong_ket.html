@@ -1,0 +1,78 @@
+{% extends layout %}
+{% block content %}
+<div class="container-fluid px-5 py-4">
+
+    <div class="d-flex justify-content-between align-items-center bg-gradient rounded-top shadow-sm p-3"
+         style="background: linear-gradient(to right, #007bff, #6f42c1); color: white;">
+        <h3 class="mb-0">
+            <i class="fas fa-calendar-alt me-2"></i> Tổng kết công tháng {{ month }}/{{ year }}
+        </h3>
+        <a href="{{ url_for('attendance.tong_hop_nam') }}"
+           class="btn btn-light text-dark shadow-sm rounded-pill px-3">
+            <i class="fas fa-arrow-left me-1"></i> Quay lại thống kê năm
+        </a>
+    </div>
+
+    <div class="bg-white shadow-sm p-3 border-top-0 rounded-bottom">
+        <form method="GET" class="row g-2 align-items-end">
+            <div class="col-auto">
+                <label class="form-label mb-0">Tháng</label>
+                <select name="month" class="form-select form-select-sm">
+                    {% for m in range(1, 13) %}
+                        <option value="{{ m }}" {% if m == month %}selected{% endif %}>{{ m }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-auto">
+                <label class="form-label mb-0">Năm</label>
+                <input type="number" name="year" class="form-control form-control-sm" value="{{ year }}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-sm btn-primary px-3">
+                    <i class="fas fa-filter"></i> Lọc
+                </button>
+            </div>
+            <div class="col-auto">
+                <a href="{{ url_for('attendance.export_excel', month=month, year=year) }}"
+                   class="btn btn-sm btn-success px-3">
+                    <i class="fas fa-file-excel"></i> Xuất Excel
+                </a>
+            </div>
+        </form>
+    </div>
+
+    {% if summaries %}
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-striped text-center align-middle shadow-sm bg-white">
+            <thead class="table-dark">
+                <tr>
+                    <th>STT</th>
+                    <th>Họ tên</th>
+                    <th>Số ngày làm</th>
+                    <th>Tổng giờ</th>
+                    <th>Số ngày vắng</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in summaries %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <a href="{{ url_for('attendance.chi_tiet_cham_cong_thang', employee_code=s.employee_code, month=month) }}"
+                           class="text-decoration-none text-primary fw-bold">
+                            {{ s.name }}
+                        </a>
+                    </td>
+                    <td>{{ s.days_worked }}</td>
+                    <td>{{ "%.2f"|format(s.total_hours or 0) }}</td>
+                    <td>{{ s.days_absent }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="alert alert-warning mt-3">Không có dữ liệu cho tháng này.</div>
+    {% endif %}
+</div>
+{% endblock %}

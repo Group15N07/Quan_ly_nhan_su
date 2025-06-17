@@ -1,0 +1,17 @@
+form .form-label {
+    font-weight: 500;
+}
+
+.btn-sm {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    font-size: 0.95rem;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
