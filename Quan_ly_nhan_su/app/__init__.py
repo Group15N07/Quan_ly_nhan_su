@@ -31,7 +31,7 @@ def create_app():
     from app.routes.dashboard import dashboard_bp
     from app.routes.InforEmployee import infor_employee_bp
     from app.routes.gameboard import gameboard_bp
-
+    from app.routes.settings import settings_bp
     app.register_blueprint(index_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(dashboard_bp)
@@ -40,7 +40,7 @@ def create_app():
     app.register_blueprint(face_trigger_bp)
     app.register_blueprint(infor_employee_bp)
     app.register_blueprint(gameboard_bp)
-    
+    app.register_blueprint(settings_bp)
     # Load user từ database cho Flask-Login
     from app.models.user import User
 

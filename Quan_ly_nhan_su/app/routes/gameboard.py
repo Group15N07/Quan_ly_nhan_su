@@ -1,8 +1,11 @@
-from flask import Blueprint, render_template
+from flask import Blueprint
 from flask_login import current_user, login_required
 from app.models.user import User
-from app.models.gameboard import calculate_score, get_ranking
+from app.models.gameboard import ranking_demo
+from app.utils.score_utils import calculate_score
 from app.decorators.role_required import role_required
+from app.utils.render_with_role_layout import render_with_role
+
 
 gameboard_bp = Blueprint('gameboard', __name__)
 
@@ -11,23 +14,19 @@ gameboard_bp = Blueprint('gameboard', __name__)
 @role_required('admin', 'employee', 'manager')
 def gameboard(user_id):
     user = User.query.get(user_id)
-    score = calculate_score(user_id)
-    ranking = get_ranking()
+    if not user:
+        return "User not found", 404
+
+    score = calculate_score(user)
+    ranking = ranking_demo()
 
     for r in ranking:
-        if r["name"] == user.username:
+        if r.get("id") == user.id:
             r["me"] = True
 
-    # Chọn layout dựa theo role của người dùng hiện tại
-    role = current_user.role  # giả sử User có thuộc tính role
-    layout_path = f"{role}/layout"
-
-    return render_template(
+    return render_with_role(
         'gamebroad/gamebroad.html',
         user=user,
         score=score,
-        ranking=ranking,
-        layout=layout_path  # Truyền layout động
+        ranking=ranking
     )
-
- 

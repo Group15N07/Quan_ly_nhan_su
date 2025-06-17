@@ -1,53 +1,106 @@
-# Đề xuất dự án: Ứng dụng quản lý nhân sự tích hợp chấm công bằng nhận diện khuôn mặt
+# 📘 Human Resource Management System
 
-## 1. Giới thiệu tổng quan
-Trong bối cảnh số hóa doanh nghiệp ngày càng phát triển, việc xây dựng một hệ thống quản lý nhân sự là điều cần thiết. Đề tài hướng đến việc thiết kế một ứng dụng hỗ trợ quản lý nhân sự hiệu quả, tích hợp nhận diện khuôn mặt bằng **Scrfd** để phát hiện và **arcface** để chấm công tự động, tăng tính bảo mật và minh bạch.
+## 🚀 Mô tả dự án
+Hệ thống quản lý nhân sự tích hợp chấm công bằng khuôn mặt và gameboard (thưởng điểm), phân quyền theo vai trò `Admin`, `Manager`, `Employee`. Backend sử dụng Flask, nhận diện khuôn mặt với + deeplearning.
 
-Hệ thống còn áp dụng **game hóa** để tạo động lực làm việc, đồng thời đáp ứng yêu cầu **mở rộng**, **bảo mật** và **trải nghiệm người dùng hiện đại**.
+---
 
-## 2. Tầm nhìn và lý do phát triển
-Nhóm chúng em xây dựng ứng dụng nhằm hỗ trợ các doanh nghiệp vừa và nhỏ hiện đại hóa công tác quản lý nhân sự, vốn thường gặp khó khăn trong việc theo dõi hồ sơ, chấm công và đánh giá hiệu suất.
+## ⚙️ Yêu cầu hệ thống
+- Python 3.9+
+- Anaconda hoặc Miniconda
+- Webcam (nếu sử dụng tính năng chấm công khuôn mặt)
 
-Hệ thống tích hợp chấm công bằng **nhận diện khuôn mặt kết hợp GPS**, giúp quản lý minh bạch và chống gian lận. Ngoài ra, ứng dụng còn **game hóa** quá trình làm việc, tạo động lực, tăng sự gắn kết giữa nhân viên và doanh nghiệp mà không cần đầu tư vào hệ thống cồng kềnh, phức tạp.
+---
 
-## 3. Đối tượng hướng đến
-- Các mô hình doanh nghiệp, công ty vừa và nhỏ  
-- Công ty cần quản lý nhân sự đơn giản, tiết kiệm chi phí  
-- Các tổ chức chưa có hệ thống quản lý nhân sự chuyên nghiệp  
+## 🐍 1. Cài đặt Anaconda (nếu chưa có)
 
-## 4. Chức năng chính
-- Chấm công bằng nhận diện khuôn mặt  
-- Quản lý hồ sơ nhân viên: lưu trữ, tra cứu thông tin nhân viên  
-- Thông báo và nhắc nhở: Tự động gửi thông báo công việc, sinh nhật, kỷ niệm làm việc  
-- Phân quyền truy cập: admin, HR, nhân viên  
+Tải và cài đặt tại:  
+👉 https://www.anaconda.com/products/distribution
 
-## 5. Kiến trúc phần mềm
-### Thành phần chính
-- **Frontend**: Giao diện người dùng (đăng nhập, quản lý, nhân sự, chấm công…)  
-- **Database**: Lưu trữ thông tin nhân viên, phòng ban…
+---
 
-### Công nghệ sử dụng
-- **Frontend**: HTML, Python, CSS  
-- **Database**: MySQL  
+## 📦 2. Tạo môi trường ảo với Anaconda
 
-## 6. Mô hình tương tác người dùng
-### Quản trị viên
-- Quản lý nhân sự,thêm, sửa, xóa, phòng ban, chấm công, lương  
-### Quản lý
-- Quản lý nhân sự, chấm công, quản lý phòng ban
+```bash
+# Tạo môi trường tên "hrms"
+conda create -n hrms python=3.9
 
-### Nhân viên
-- Đăng nhập, chấm công, xem lịch sử làm việc, bảng lương  
+# Kích hoạt môi trường
+conda activate hrms
+```
 
-## 7. MVP và định hướng phát triển
-### Chức năng MVP
-- Đăng nhập/Đăng xuất  
-- Quản lý nhân sự, phòng ban  
-- Chấm công, theo dõi lịch làm  
-- Xem bảng lương cơ bản  
+---
 
-### Mục tiêu
-- Đưa sản phẩm trở thành giải pháp hữu ích cho doanh nghiệp vừa và nhỏ  
-- Tiết kiệm thời gian, chi phí cho các doanh nghiệp  
-- Cải tiến nâng cao thêm các chức năng: backend và tích hợp AI  
+## 📄 3. Cài các thư viện cần thiết từ requirements.txt
 
+```bash
+# Di chuyển đến thư mục chứa project
+cd Quan_ly_nhan_su
+
+# Cài thư viện
+pip install -r requirements.txt
+```
+
+📌 Nếu gặp lỗi với OpenCV hoặc dlib, bạn có thể cài riêng:
+```bash
+pip install opencv-python
+```
+
+---
+
+## 🏃‍♂️ 4. Chạy ứng dụng Flask
+
+```bash
+# Đặt biến môi trường (Windows)
+set FLASK_APP=run.py
+set FLASK_ENV=development
+
+# Khởi chạy
+flask run
+```
+
+⏱ Ứng dụng sẽ chạy tại:  
+👉 http://127.0.0.1:5000
+
+---
+
+## 👤 Tài khoản mẫu để đăng nhập
+
+| Role     | Username    | Password   |
+|----------|-------------|------------|
+| Admin    | admin       | admin123   |
+| Manager  | manager     | manager123 |
+| Employee | hoangnguyen | hoang123   |
+
+---
+
+## 📂 Cấu trúc thư mục chính
+
+```
+Quan_ly_nhan_su/
+├── app/
+│   ├── routes/                # Các route Flask theo từng chức năng
+│   ├── models/                # Cấu trúc bảng và ORM
+│   ├── templates/             # Giao diện Jinja2
+│   ├── static/                # File CSS, JS, ảnh,...
+│   ├── utils/                 # Hàm xử lý bổ trợ
+│   ├── decorators/            # Phân quyền truy cập (role_required, login_required...)
+│   └── services/              # Các lớp xử lý logic tách biệt của facemodel
+├── run.py                     # File khởi chạy Flask
+├── requirements.txt           # Thư viện cần cài
+└── README.md
+```
+
+---
+
+## 💬 Góp ý hoặc hỗ trợ
+
+Liên hệ: 23010101@st.phenikaa-uni.edu.vn
+
+
+---
+
+## 🔗 Repository GitHub
+
+Mã nguồn được lưu trữ tại:  
+👉 [https://github.com/Group15N07/Quan_ly_nhan_su](https://github.com/Group15N07/Quan_ly_nhan_su)

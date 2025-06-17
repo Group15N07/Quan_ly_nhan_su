@@ -4,11 +4,11 @@
     <div class="avatar">
         <img src="{{ user.avatar_url }}" alt="avatar">
     </div>
-    <div class="player-name" id="playerName">{{ user.name }}</div>
-    <div class="level">Level <span id="playerLevel">{{ user.level }}</span></div>
+    <div class="player-name" id="playerName">{{ user.username }}</div>
+    <div class="level">Level <span id="playerLevel">{{ level }}</span></div>
     <div class="score" id="playerScore">{{ score }}</div>
     <div class="progress-bar-bg">
-        <!-- <div class="progress-bar" id="levelProgress" style="width: {{ (score/600*100)|round(0) }}%;"></div> -->
+        <div class="progress-bar" id="levelProgress" style="width: {{ (score/600*100)|round(0) }}%;"></div>
     </div>
     <div class="badges">
         {% for badge in user.badges %}
@@ -21,7 +21,7 @@
     <div class="stats">
         <div>Điểm: <b id="statScore">{{ score }}</b></div>
         <div>Tổng Huy hiệu: <b id="statBadges">{{ user.badges|length }}</b></div>
-        <div>Xếp: <b id="statRank">{{ user.rank }}</b></div>
+        <div>Xếp: <b id="statRank">{{ user_rank }}</b></div>
     </div>
     <div class="ranking">
         <div class="ranking-title">🏆 Bảng xếp hạng tuần</div>
