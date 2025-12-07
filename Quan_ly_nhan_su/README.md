@@ -103,4 +103,4 @@ Liên hệ: 23010101@st.phenikaa-uni.edu.vn
 ## 🔗 Repository GitHub
 
 Mã nguồn được lưu trữ tại:  
-👉 [https://github.com/Group15N07/Quan_ly_nhan_su](https://github.com/Group15N07/Quan_ly_nhan_su)
+👉 [https://github.com/Group15N07/Quan_ly_nhan_su](https://github.com/Group15N07/Quan_ly_nhan_su_master)
